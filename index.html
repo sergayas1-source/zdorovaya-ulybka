@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Здоровая улыбка — Стоматология в Минске</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.6; color: #0f172a; background: #ffffff; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        header { background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; flex-wrap: wrap; }
+        .logo { font-size: 24px; font-weight: 700; color: #0e7490; text-decoration: none; }
+        .nav-links { display: flex; gap: 30px; list-style: none; flex-wrap: wrap; }
+        .nav-links a { color: #0f172a; text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: #0e7490; }
+        .nav-phone { color: #0e7490; font-weight: 600; text-decoration: none; font-size: 18px; }
+
+        .hero { background: linear-gradient(135deg, #0e7490 0%, #06b6d4 100%); color: white; padding: 100px 0; text-align: center; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 100%); }
+        .hero-content { position: relative; z-index: 1; }
+        .hero h1 { font-size: 48px; margin-bottom: 20px; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .hero p { font-size: 20px; margin-bottom: 40px; opacity: 0.95; }
+
+        .btn-primary { display: inline-block; background: #ffffff; color: #0e7490; padding: 18px 40px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 18px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+
+        section { padding: 80px 0; }
+        .section-title { text-align: center; font-size: 36px; margin-bottom: 20px; color: #0f172a; }
+        .section-subtitle { text-align: center; font-size: 18px; color: #64748b; margin-bottom: 60px; }
+
+        .about { background: #f8fafc; }
+        .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-text h2 { font-size: 32px; margin-bottom: 20px; color: #0e7490; }
+        .about-text p { font-size: 16px; line-height: 1.8; color: #475569; margin-bottom: 15px; }
+        .about-image { border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); height: 400px; background: linear-gradient(135deg, #0e7490 0%, #06b6d4 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 100px; }
+        .about-image img { width: 100%; height: 100%; object-fit: cover; }
+
+        .gallery { background: white; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .gallery-item { position: relative; border-radius: 12px; overflow: hidden; height: 250px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s; background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); display: flex; align-items: center; justify-content: center; }
+        .gallery-item:hover { transform: translateY(-5px); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
+        .gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); color: white; padding: 20px; font-weight: 600; z-index: 2; }
+        .gallery-icon { font-size: 60px; z-index: 1; }
+
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .service-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; transition: all 0.3s; }
+        .service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(14, 116, 144, 0.1); border-color: #0e7490; }
+        .service-icon { font-size: 48px; margin-bottom: 20px; }
+        .service-card h3 { font-size: 22px; margin-bottom: 15px; color: #0e7490; }
+        .service-card p { color: #64748b; margin-bottom: 20px; }
+        .service-price { font-size: 20px; font-weight: 700; color: #0e7490; }
+
+        .features { background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%); }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        .feature-item { text-align: center; }
+        .feature-icon { font-size: 48px; margin-bottom: 20px; }
+        .feature-item h3 { font-size: 20px; margin-bottom: 10px; color: #0e7490; }
+        .feature-item p { color: #64748b; }
+
+        .team { background: white; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .team-card { text-align: center; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s; background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); }
+        .team-card:hover { transform: translateY(-5px); }
+        .team-card img { width: 100%; height: 350px; object-fit: cover; }
+        .team-info { padding: 20px; background: white; }
+        .team-info h3 { color: #0e7490; font-size: 20px; margin-bottom: 5px; }
+        .team-info p { color: #64748b; font-size: 14px; }
+
+        .contact-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .contact-info h3 { font-size: 24px; margin-bottom: 30px; color: #0e7490; }
+        .contact-item { margin-bottom: 25px; }
+        .contact-item strong { display: block; color: #0f172a; margin-bottom: 5px; font-size: 16px; }
+        .contact-item span { color: #64748b; font-size: 16px; }
+        .work-hours { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin-top: 20px; border-radius: 8px; }
+        .work-hours strong { color: #92400e; }
+        .contact-map { background: #e0f2fe; border-radius: 16px; height: 400px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .contact-map iframe { width: 100%; height: 100%; border: none; }
+
+        .cta { background: linear-gradient(135deg, #0e7490 0%, #06b6d4 100%); color: white; text-align: center; padding: 100px 0; position: relative; overflow: hidden; }
+        .cta::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 100%); }
+        .cta-content { position: relative; z-index: 1; }
+        .cta h2 { font-size: 36px; margin-bottom: 20px; }
+        .cta p { font-size: 18px; margin-bottom: 40px; opacity: 0.95; }
+        .btn-large { display: inline-block; background: #ffffff; color: #0e7490; padding: 20px 50px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 20px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .btn-large:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+
+        footer { background: #0f172a; color: white; text-align: center; padding: 30px 0; }
+        footer p { opacity: 0.8; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 32px; }
+            .hero p { font-size: 16px; }
+            .about-content, .contact-content { grid-template-columns: 1fr; }
+            .section-title { font-size: 28px; }
+            .cta h2 { font-size: 28px; }
+            .gallery-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">🦷 Здоровая улыбка</a>
+                <ul class="nav-links">
+                    <li><a href="#about">О клинике</a></li>
+                    <li><a href="#gallery">Галерея</a></li>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#team">Врачи</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+                <a href="tel:+375291234567" class="nav-phone">+375 (29) 123-45-67</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="container">
+                <h1>Стоматология «Здоровая улыбка»</h1>
+                <p>Профессиональная стоматологическая помощь в Минске. Забота о вашей улыбке — наша работа.</p>
+                <a href="https://script.google.com/macros/s/AKfycbz8n1kTx3b7q73D4H-gqlVcYR53CBYEHbjPV_Vu5rTDwmi9DgIzY_RRvsp-Xez8IUtH/exec" 
+                   target="_blank" rel="noopener noreferrer" class="btn-primary">
+                    📅 Записаться на приём
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>О нашей клинике</h2>
+                    <p>Мы работаем с 2010 года и помогли тысячам пациентов обрести здоровую улыбку. В нашей клинике вы найдёте современные кабинеты, стерильные инструменты, опытных врачей и безболезненное лечение.</p>
+                    <p>Мы используем только сертифицированные материалы и оборудование последнего поколения. Ваше здоровье и комфорт — наш главный приоритет.</p>
+                    <p><strong>🏥 Современное оборудование</strong> — работаем на технике последнего поколения</p>
+                    <p><strong>👨‍⚕️ Опытные специалисты</strong> — врачи с опытом работы более 10 лет</p>
+                    <p><strong>💊 Безболезненное лечение</strong> — используем качественную анестезию</p>
+                </div>
+                <div class="about-image">
+                    🦷
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Наша клиника</h2>
+            <p class="section-subtitle">Современное оборудование и комфортная атмосфера</p>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-icon">🦷</div>
+                    <div class="gallery-caption">🦷 Стоматологический кабинет</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-icon">🔬</div>
+                    <div class="gallery-caption">🔬 Современное оборудование</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-icon">🛋️</div>
+                    <div class="gallery-caption">🛋️ Уютная зона ожидания</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-icon">✨</div>
+                    <div class="gallery-caption">✨ Стерильность и безопасность</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-icon">🔍</div>
+                    <div class="gallery-caption">🔍 Точная диагностика</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-icon">💊</div>
+                    <div class="gallery-caption">💊 Комфортное лечение</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">Наши услуги</h2>
+            <p class="section-subtitle">Полный спектр стоматологических услуг для всей семьи</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">👨‍⚕️</div>
+                    <h3>Консультация</h3>
+                    <p>Осмотр, диагностика и составление индивидуального плана лечения</p>
+                    <div class="service-price">30 BYN</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🦷</div>
+                    <h3>Лечение кариеса</h3>
+                    <p>Безболезненное лечение с использованием современных композитных материалов</p>
+                    <div class="service-price">от 80 BYN</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚕️</div>
+                    <h3>Удаление зуба</h3>
+                    <p>Простое и сложное удаление, включая зубы мудрости</p>
+                    <div class="service-price">от 50 BYN</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✨</div>
+                    <h3>Чистка зубов</h3>
+                    <p>Профессиональная гигиена, удаление зубного камня и налёта</p>
+                    <div class="service-price">от 100 BYN</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Почему выбирают нас</h2>
+            <p class="section-subtitle">Наши преимущества</p>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">👨‍⚕️</div>
+                    <h3>Опытные врачи</h3>
+                    <p>Стаж работы более 10 лет</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Современное оборудование</h3>
+                    <p>Работаем на технике последнего поколения</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💊</div>
+                    <h3>Безболезненное лечение</h3>
+                    <p>Используем качественную анестезию</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🕐</div>
+                    <h3>Удобное время</h3>
+                    <p>Запись онлайн 24/7</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team" id="team">
+        <div class="container">
+            <h2 class="section-title">Наши врачи</h2>
+            <p class="section-subtitle">Профессионалы своего дела</p>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div style="height: 350px; display: flex; align-items: center; justify-content: center; font-size: 100px; background: linear-gradient(135deg, #0e7490 0%, #06b6d4 100%);">👨‍⚕️</div>
+                    <div class="team-info">
+                        <h3>Александр Петров</h3>
+                        <p>Главный врач, стоматолог-терапевт</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div style="height: 350px; display: flex; align-items: center; justify-content: center; font-size: 100px; background: linear-gradient(135deg, #0e7490 0%, #06b6d4 100%);">👩‍⚕️</div>
+                    <div class="team-info">
+                        <h3>Анна Смирнова</h3>
+                        <p>Стоматолог-хирург</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div style="height: 350px; display: flex; align-items: center; justify-content: center; font-size: 100px; background: linear-gradient(135deg, #0e7490 0%, #06b6d4 100%);">👨‍⚕️</div>
+                    <div class="team-info">
+                        <h3>Дмитрий Козлов</h3>
+                        <p>Стоматолог-ортодонт</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Контакты</h2>
+            <p class="section-subtitle">Мы всегда рады видеть вас</p>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Как нас найти</h3>
+                    <div class="contact-item">
+                        <strong>📍 Адрес</strong>
+                        <span>Минск, пр-т Независимости, 48</span>
+                    </div>
+                    <div class="contact-item">
+                        <strong>📞 Телефон</strong>
+                        <span>+375 (29) 123-45-67</span>
+                    </div>
+                    <div class="contact-item">
+                        <strong>✉️ Email</strong>
+                        <span>info@zdorovaya-ulybka.by</span>
+                    </div>
+                    <div class="work-hours">
+                        <strong>🕐 Часы работы:</strong><br>
+                        <span>Пн-Пт: 09:00 - 19:00</span><br>
+                        <span>Обед: 13:00 - 14:00</span><br>
+                        <span>Сб-Вс: выходной</span><br>
+                        <span>Праздничные дни: выходной</span>
+                    </div>
+                </div>
+                <div class="contact-map">
+                    <iframe src="https://yandex.ru/map-widget/v1/?ll=27.5615%2C53.9022&z=16&pt=27.5615,53.9022,comma" allowfullscreen="true"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="cta-content">
+            <div class="container">
+                <h2>Запишитесь на приём онлайн</h2>
+                <p>Выберите удобное время и запишитесь за 1 минуту. Система автоматически покажет только свободные слоты.<br>
+                <strong>Работаем Пн-Пт 9:00-19:00 (обед 13:00-14:00)</strong></p>
+                <a href="https://script.google.com/macros/s/AKfycbz8n1kTx3b7q73D4H-gqlVcYR53CBYEHbjPV_Vu5rTDwmi9DgIzY_RRvsp-Xez8IUtH/exec" 
+                   target="_blank" rel="noopener noreferrer" class="btn-large">
+                    📅 Записаться онлайн
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Стоматология «Здоровая улыбка». Все права защищены.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
